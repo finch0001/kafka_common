@@ -1,0 +1,404 @@
+{
+	"type": "record",
+	"name": "car",
+	"namespace": "shev.detect",
+	"fields": [{
+		"name": "vin",
+		"type": ["string", "null"]
+	}, {
+		"name": "collectiontime",
+		"type": ["long", "null"]
+	}, {
+		"name": "msgid",
+		"type": ["int", "null"]
+	}, {
+		"name": "receivetime",
+		"type": ["long", "null"]
+	}, {
+		"name": "vehicledata",
+		"type": [{
+			"type": "record",
+			"name": "vehicledata",
+			"namespace": "shev.detect.car",
+			"fields": [{
+				"name": "vehiclestatus",
+				"type": ["int", "null"]
+			}, {
+				"name": "chargestatus",
+				"type": ["int", "null"]
+			}, {
+				"name": "runmodel",
+				"type": ["int", "null"]
+			}, {
+				"name": "speed",
+				"type": ["double", "null"]
+			}, {
+				"name": "summileage",
+				"type": ["double", "null"]
+			}, {
+				"name": "sumvoltage",
+				"type": ["double", "null"]
+			}, {
+				"name": "sumcurrent",
+				"type": ["double", "null"]
+			}, {
+				"name": "soc",
+				"type": ["int", "null"]
+			}, {
+				"name": "dcdcstatus",
+				"type": ["int", "null"]
+			}, {
+				"name": "gearnum",
+				"type": ["int", "null"]
+			}, {
+				"name": "havedriver",
+				"type": ["int", "null"]
+			}, {
+				"name": "havebrake",
+				"type": ["int", "null"]
+			}, {
+				"name": "insulationresistance",
+				"type": ["int", "null"]
+			}, {
+				"name": "acceleratorpedal",
+				"type": ["int", "null"]
+			}, {
+				"name": "brakestatus",
+				"type": ["int", "null"]
+			}]
+		}, "null"]
+	}, {
+		"name": "motordatalist",
+		"type": [{
+			"type": "record",
+			"name": "motordatalist",
+			"namespace": "shev.detect.car",
+			"fields": [{
+				"name": "motordatanum",
+				"type": ["int", "null"]
+			}, {
+				"name": "motordatalist",
+				"type": [{
+					"type": "array",
+					"items": [{
+						"type": "record",
+						"name": "motordatalist",
+						"namespace": "shev.detect.car.motordatalist",
+						"fields": [{
+							"name": "sequence",
+							"type": ["int", "null"]
+						}, {
+							"name": "status",
+							"type": ["int", "null"]
+						}, {
+							"name": "ctrollertmp",
+							"type": ["int", "null"]
+						}, {
+							"name": "rotatingspeed",
+							"type": ["int", "null"]
+						}, {
+							"name": "torque",
+							"type": ["double", "null"]
+						}, {
+							"name": "temperature",
+							"type": ["int", "null"]
+						}, {
+							"name": "controllervoltage",
+							"type": ["double", "null"]
+						}, {
+							"name": "controllercurrent",
+							"type": ["double", "null"]
+						}]
+					}, "null"]
+				}, "null"]
+			}]
+		}, "null"]
+	}, {
+		"name": "fuelcell",
+		"type": [{
+			"type": "record",
+			"name": "fuelcell",
+			"namespace": "shev.detect.car",
+			"fields": [{
+				"name": "fuelcellvoltage",
+				"type": ["double", "null"]
+			}, {
+				"name": "fuelcellelectric",
+				"type": ["double", "null"]
+			}, {
+				"name": "fuelconsumption",
+				"type": ["double", "null"]
+			}, {
+				"name": "fuelcelltmpprobenumber",
+				"type": ["int", "null"]
+			}, {
+				"name": "probetmpvalues",
+				"type": ["string", "null"]
+			}, {
+				"name": "h2maxtmp",
+				"type": ["double", "null"]
+			}, {
+				"name": "h2maxtmpprobeseq",
+				"type": ["int", "null"]
+			}, {
+				"name": "h2maxconcentration",
+				"type": ["int", "null"]
+			}, {
+				"name": "h2maxconcentrationsensorseq",
+				"type": ["int", "null"]
+			}, {
+				"name": "h2maxpressure",
+				"type": ["double", "null"]
+			}, {
+				"name": "h2maxpressuresensorseq",
+				"type": ["int", "null"]
+			}, {
+				"name": "highvoltagedcdcstate",
+				"type": ["int", "null"]
+			}]
+		}, "null"]
+	}, {
+		"name": "enginedata",
+		"type": [{
+			"type": "record",
+			"name": "enginedata",
+			"namespace": "shev.detect.car",
+			"fields": [{
+				"name": "enginestatus",
+				"type": ["int", "null"]
+			}, {
+				"name": "grankshaftspeed",
+				"type": ["int", "null"]
+			}, {
+				"name": "enginefuelconsumptionrate",
+				"type": ["double", "null"]
+			}]
+		}, "null"]
+	}, {
+		"name": "vehicleposition",
+		"type": [{
+			"type": "record",
+			"name": "vehicleposition",
+			"namespace": "shev.detect.car",
+			"fields": [{
+				"name": "locationstate",
+				"type": ["int", "null"]
+			}, {
+				"name": "lat",
+				"type": ["int", "null"]
+			}, {
+				"name": "lon",
+				"type": ["int", "null"]
+			}, {
+				"name": "longitude",
+				"type": ["double", "null"]
+			}, {
+				"name": "latitude",
+				"type": ["double", "null"]
+			}]
+		}, "null"]
+	}, {
+		"name": "extremevalue",
+		"type": [{
+			"type": "record",
+			"name": "extremevalue",
+			"namespace": "shev.detect.car",
+			"fields": [{
+				"name": "maxvoltagebatterysubseq",
+				"type": ["int", "null"]
+			}, {
+				"name": "maxvoltagebatterysingleseq",
+				"type": ["int", "null"]
+			}, {
+				"name": "maxbatterysinglevoltageval",
+				"type": ["double", "null"]
+			}, {
+				"name": "minvoltagebatterysubseq",
+				"type": ["int", "null"]
+			}, {
+				"name": "minvoltagebatterysingleseq",
+				"type": ["int", "null"]
+			}, {
+				"name": "minbatterysinglevoltageval",
+				"type": ["double", "null"]
+			}, {
+				"name": "maxtmpsubseq",
+				"type": ["int", "null"]
+			}, {
+				"name": "maxtmpprobesingleseq",
+				"type": ["int", "null"]
+			}, {
+				"name": "maxtmpval",
+				"type": ["int", "null"]
+			}, {
+				"name": "mintmpsubseq",
+				"type": ["int", "null"]
+			}, {
+				"name": "mintmpprobesingleseq",
+				"type": ["int", "null"]
+			}, {
+				"name": "mintmpval",
+				"type": ["int", "null"]
+			}]
+		}, "null"]
+	}, {
+		"name": "alarmdata",
+		"type": [{
+			"type": "record",
+			"name": "alarmdata",
+			"namespace": "shev.detect.car",
+			"fields": [{
+				"name": "maxalarmlevel",
+				"type": ["int", "null"]
+			}, {
+				"name": "comalarmflag",
+				"type": ["long", "null"]
+			}, {
+				"name": "sumrechargeablestoragefaults",
+				"type": ["int", "null"]
+			}, {
+				"name": "rechargeablestoragefaultscodelist",
+				"type": ["string", "null"]
+			}, {
+				"name": "sumdrivemotorfaults",
+				"type": ["int", "null"]
+			}, {
+				"name": "drivemotorfaultscodelist",
+				"type": ["string", "null"]
+			}, {
+				"name": "sumenginefaults",
+				"type": ["int", "null"]
+			}, {
+				"name": "enginefaultslist",
+				"type": ["string", "null"]
+			}, {
+				"name": "sumothersfaults",
+				"type": ["int", "null"]
+			}, {
+				"name": "othersfaultscodelist",
+				"type": ["string", "null"]
+			}]
+		}, "null"]
+	}, {
+		"name": "chargedevicevoltagelist",
+		"type": [{
+			"type": "record",
+			"name": "chargedevicevoltagelist",
+			"namespace": "shev.detect.car",
+			"fields": [{
+				"name": "chargedevicevoltagenum",
+				"type": ["int", "null"]
+			}, {
+				"name": "voltagelist",
+				"type": [{
+					"type": "array",
+					"items": [{
+						"type": "record",
+						"name": "voltagelist",
+						"namespace": "shev.detect.car.chargedevicevoltagelist",
+						"fields": [{
+							"name": "rechargeablestoragesubseq",
+							"type": ["int", "null"]
+						}, {
+							"name": "rechargeablestoragevoltage",
+							"type": ["double", "null"]
+						}, {
+							"name": "rechargeablestorageelectric",
+							"type": ["double", "null"]
+						}, {
+							"name": "sumbatterysingle",
+							"type": ["int", "null"]
+						}, {
+							"name": "firstbatteryseq",
+							"type": ["int", "null"]
+						}, {
+							"name": "sumsinglebattery",
+							"type": ["int", "null"]
+						}, {
+							"name": "singlebatteyvoltage",
+							"type": ["string", "null"]
+						}]
+					}, "null"]
+				}, "null"]
+			}]
+		}, "null"]
+	}, {
+		"name": "chargedevicetemplist",
+		"type": [{
+			"type": "record",
+			"name": "chargedevicetemplist",
+			"namespace": "shev.detect.car",
+			"fields": [{
+				"name": "chargedevicetempnum",
+				"type": ["int", "null"]
+			}, {
+				"name": "templist",
+				"type": [{
+					"type": "array",
+					"items": [{
+						"type": "record",
+						"name": "templist",
+						"namespace": "shev.detect.car.chargedevicetemplist",
+						"fields": [{
+							"name": "rechargeablestoragesubseq",
+							"type": ["int", "null"]
+						}, {
+							"name": "rechargeablestoragetmpnumber",
+							"type": ["int", "null"]
+						}, {
+							"name": "rechargeablestoragetmpvalues",
+							"type": ["string", "null"]
+						}]
+					}, "null"]
+				}, "null"]
+			}]
+		}, "null"]
+	}, {
+		"name": "dibiaodata",
+		"type": [{
+			"type": "record",
+			"name": "dibiaodata",
+			"namespace": "shev.detect.car",
+			"fields": [{
+				"name": "startfiretime",
+				"type": ["long", "null"]
+			}, {
+				"name": "endfiretime",
+				"type": ["long", "null"]
+			}, {
+				"name": "direction",
+				"type": ["int", "null"]
+			}, {
+				"name": "acceleratorpedal",
+				"type": ["int", "null"]
+			}, {
+				"name": "brakestatus",
+				"type": ["int", "null"]
+			}, {
+				"name": "powersystemready",
+				"type": ["int", "null"]
+			}, {
+				"name": "emergencypowerdown",
+				"type": ["int", "null"]
+			}, {
+				"name": "highvoltagecurrent",
+				"type": ["double", "null"]
+			}, {
+				"name": "remainingbattery",
+				"type": ["double", "null"]
+			}, {
+				"name": "batterypowersum",
+				"type": ["double", "null"]
+			}, {
+				"name": "balanceactivated",
+				"type": ["int", "null"]
+			}, {
+				"name": "tmppakage",
+				"type": ["int", "null"]
+			}, {
+				"name": "tmppakagelist",
+				"type": ["string", "null"]
+			}]
+		}, "null"]
+	}]
+}, "null"
