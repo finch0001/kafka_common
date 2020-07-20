@@ -49,6 +49,7 @@ object ShevCarDataConsumer {
 
           // val is = AvroInputStream.data[CarData].from(record.value()).build(schema)
           // is.iterator.toSeq.foreach(x => println(x))
+
           val is = AvroInputStream.binary[CarData].from(record.value()).build(schema)
           is.iterator.toSeq.foreach(x => println(x))
 

@@ -1,15 +1,18 @@
 package com.intest.kafka.common.demo
 
+import java.util.concurrent.TimeUnit
 import java.util.{Properties, UUID}
 
 import com.intest.kafka.common.demo.Avro4sDemo.Pizza
 import com.intest.kafka.common.producer.KafkaProducerWrapper
-import com.sksamuel.avro4s.{AvroSchema, RecordFormat}
+import com.sksamuel.avro4s.{AvroSchema, RecordFormat, SchemaFor}
 import com.sksamuel.avro4s.kafka.GenericSerde
 import com.twitter.bijection.Injection
 import com.twitter.bijection.avro.GenericAvroCodecs
 import org.apache.avro.generic.GenericRecord
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, ProducerRecord}
+
+import scala.collection.mutable
 
 /**
  * @author yusheng
@@ -17,7 +20,13 @@ import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, Produce
  **/
 object ShevCarDataProducer {
 
-  case class CarData(vin:String,collectionTime:Long)
+  // case class DiBiao(id:Int,values:Seq[Double])
+  //case class CarData(vin:String,collectionTime:Long,diBiaoMap:mutable.HashMap[String,DiBiao])
+  case class Location(lat:Double,lon:Double)
+  case class CarData(vin:String,id:Int,values:Seq[Location])
+  // case class CarData(vin:String,id:Int,values:Seq[Double],location: Location)
+
+
 
   def main(args:Array[String]): Unit ={
 
@@ -33,14 +42,23 @@ object ShevCarDataProducer {
 
     val producerWrapper = new KafkaProducerWrapper[String,Array[Byte]](producer)
 
+    // implicit val schemaFor = SchemaFor[CarData]
     val format = RecordFormat[CarData]
 
     val schema = AvroSchema[CarData]
     val recordInjection: Injection[GenericRecord, Array[Byte]] = GenericAvroCodecs.toBinary(schema)
 
-    for(i <- 0 until 1000){
+    for(i <- 0 until 1000000){
       val key = UUID.randomUUID().toString
-      val row = CarData(key,System.currentTimeMillis())
+
+      // val diBiaoMap = new scala.collection.mutable.HashMap[String,DiBiao]()
+      // diBiaoMap.put("dibiao-1",DiBiao(1,Seq(1.8d,2.09d,3.04d,2.98d)))
+      // diBiaoMap.put("dibiao-2",DiBiao(2,Seq(1.8d,2.09d,3.04d,2.98d)))
+      // diBiaoMap.put("dibiao-3",DiBiao(3,Seq(1.8d,2.09d,3.04d,2.98d)))
+
+      // val row = CarData(key,System.currentTimeMillis(),diBiaoMap)
+      // val row = CarData(key,i,Seq(3.04d,4.5d,0.9d,1.32d),Location(4.04d,12.03d))
+      val row = CarData(key,i,Seq(Location(4.03d,3.0d),Location(0.1d,3.03d)))
       val record = format.to(row)
       val bytes = recordInjection.apply(record)
       val producerRecord = new ProducerRecord[String, Array[Byte]]("ys_mdf4_test", bytes)
@@ -51,6 +69,7 @@ object ShevCarDataProducer {
       val metaData = future.get()
       println("offset:" + metaData.offset())
       println("partition:" + metaData.partition())
+      TimeUnit.SECONDS.sleep(1)
     }
 
 
