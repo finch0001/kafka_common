@@ -19,7 +19,7 @@
         <bijection.version>0.9.6</bijection.version>
         <zookeeper.version>3.4.14</zookeeper.version>
         <metrics.version>2.2.0</metrics.version>
-        <mysql.connector.version>5.1.47</mysql.connector.version>
+        <mysql.connector.version>8.0.16</mysql.connector.version>
         <commons_dbutils.version>1.6</commons_dbutils.version>
         <joda_time.version>2.9.9</joda_time.version>
         <log4j.version>2.11.1</log4j.version>
