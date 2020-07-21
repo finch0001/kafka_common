@@ -38,6 +38,7 @@ public class KafkaAdminClientTestJ {
             System.out.println(topic);
         }
 
+
         /*
         System.out.println(adminClient.getTopicConfig("ys_mdf4_test"));
 

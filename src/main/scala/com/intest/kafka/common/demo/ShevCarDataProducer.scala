@@ -48,6 +48,7 @@ object ShevCarDataProducer {
     val schema = AvroSchema[CarData]
     val recordInjection: Injection[GenericRecord, Array[Byte]] = GenericAvroCodecs.toBinary(schema)
 
+    var batchNum = 0
     for(i <- 0 until 1000000){
       val key = UUID.randomUUID().toString
 
@@ -67,9 +68,14 @@ object ShevCarDataProducer {
       // producerWrapper.sendSynchronously()
 
       val metaData = future.get()
-      println("offset:" + metaData.offset())
-      println("partition:" + metaData.partition())
-      TimeUnit.SECONDS.sleep(1)
+      println("id:" + i + ", offset:" + metaData.offset() + ", timestamp:" + metaData.timestamp())
+
+      if(batchNum == 500) {
+        TimeUnit.SECONDS.sleep(1)
+        batchNum = 0
+      }
+
+      batchNum += 1
     }
 
 
