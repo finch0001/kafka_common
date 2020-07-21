@@ -1,8 +1,10 @@
 package com.intest.kafka.common.demo
 
+import java.nio.ByteBuffer
 import java.util.concurrent.TimeUnit
 import java.util.{Properties, UUID}
 
+import com.intest.kafka.common.compress.ZstdCompressor
 import com.intest.kafka.common.demo.Avro4sDemo.Pizza
 import com.intest.kafka.common.producer.KafkaProducerWrapper
 import com.sksamuel.avro4s.{AvroSchema, RecordFormat, SchemaFor}
@@ -36,6 +38,7 @@ object ShevCarDataProducer {
     producerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,"org.apache.kafka.common.serialization.StringSerializer")
     producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.ByteArraySerializer")
     // producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, new GenericSerde[CarData]())
+    producerProps.put(ProducerConfig.COMPRESSION_TYPE_CONFIG,"lz4")
 
     //创建一个kafka生产者
     val producer: KafkaProducer[String, Array[Byte]] = new KafkaProducer(producerProps)
@@ -48,8 +51,10 @@ object ShevCarDataProducer {
     val schema = AvroSchema[CarData]
     val recordInjection: Injection[GenericRecord, Array[Byte]] = GenericAvroCodecs.toBinary(schema)
 
+    val zStdCompressor = ZstdCompressor.getOrCreate(ZstdCompressor.DEFAULT_COMPRESSION_LEVEL)
+
     var batchNum = 0
-    for(i <- 0 until 1000000){
+    for(i <- 0 until 300000){
       val key = UUID.randomUUID().toString
 
       // val diBiaoMap = new scala.collection.mutable.HashMap[String,DiBiao]()
@@ -62,7 +67,20 @@ object ShevCarDataProducer {
       val row = CarData(key,i,Seq(Location(4.03d,3.0d),Location(0.1d,3.03d)))
       val record = format.to(row)
       val bytes = recordInjection.apply(record)
-      val producerRecord = new ProducerRecord[String, Array[Byte]]("ys_mdf4_test", bytes)
+
+      // val inBuffer = ByteBuffer.allocateDirect(bytes.length)
+      // val outBuffer = ByteBuffer.allocateDirect(bytes.length)
+
+      // zStdCompressor.compress(inBuffer,outBuffer)
+
+      // val compressBytes = new Array[Byte](outBuffer.position())
+      // outBuffer.position(0)
+      // outBuffer.get(compressBytes)
+      // println(compressBytes.length)
+
+      // val producerRecord = new ProducerRecord[String, Array[Byte]]("ys_mdf4_test", bytes)
+      val producerRecord = new ProducerRecord[String, Array[Byte]]("ys_mdf4_test_v2", bytes)
+
       val future = producer.send(producerRecord)
 
       // producerWrapper.sendSynchronously()

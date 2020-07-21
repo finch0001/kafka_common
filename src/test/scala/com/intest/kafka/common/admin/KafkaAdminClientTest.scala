@@ -31,6 +31,7 @@ object KafkaAdminClientTest {
     val tmp  = CommonAdminClient.toImmutableScalaSet(nodes);
     tmp.foreach(println)
 
+    kafkaAdminClient.deleteTopic("ys_mdf4_test_v2")
 
     kafkaAdminClient.close()
   }
