@@ -23,7 +23,7 @@
         <commons_dbutils.version>1.6</commons_dbutils.version>
         <joda_time.version>2.9.9</joda_time.version>
         <log4j.version>2.11.1</log4j.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <scalatest.version>3.0.8</scalatest.version>
         <main.class>com.intest.shev.CarQualityDetectMain</main.class>
         <os.detected.classifier>windows</os.detected.classifier>
