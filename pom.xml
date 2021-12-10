@@ -22,7 +22,7 @@
         <mysql.connector.version>5.1.47</mysql.connector.version>
         <commons_dbutils.version>1.6</commons_dbutils.version>
         <joda_time.version>2.9.9</joda_time.version>
-        <log4j.version>2.11.1</log4j.version>
+        <log4j.version>2.15.0</log4j.version>
         <junit.version>4.12</junit.version>
         <scalatest.version>3.0.8</scalatest.version>
         <main.class>com.intest.shev.CarQualityDetectMain</main.class>
